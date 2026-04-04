@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String             @id @default(uuid())
+  email      String?            @unique
+  phone      String             @unique
+  name       String
+  dob        DateTime?
+  gender     String?
+  city       String?
+  profession String?
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+
+  ownedFamilyGroups    FamilyGroup[]      @relation("FamilyOwner")
+  familyMemberLinks    FamilyMemberLink[]
+}
+
+model FamilyGroup {
+  id         String   @id @default(uuid())
+  ownerId    String
+  planType   String   @default("FREE")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  owner      User               @relation("FamilyOwner", fields: [ownerId], references: [id])
+  members    FamilyMemberLink[]
+  children   Child[]
+}
+
+model FamilyMemberLink {
+  familyGroupId String
+  userId        String
+  role          String   @default("PARTNER") // OWNER, PARTNER, VIEWER
+  createdAt     DateTime @default(now())
+
+  familyGroup   FamilyGroup @relation(fields: [familyGroupId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([familyGroupId, userId])
+}
+
+model Child {
+  id            String   @id @default(uuid())
+  familyGroupId String
+  name          String
+  dob           DateTime
+  gender        String
+  bloodGroup    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  familyGroup   FamilyGroup @relation(fields: [familyGroupId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidoDoc - Privacy-First Pediatric Health Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-notes-medical"></i>
+                <span>KidoDoc</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-tab="children">
+                    <i class="fa-solid fa-child-reaching"></i> Children
+                </a>
+                <a href="#" class="nav-item" data-tab="records">
+                    <i class="fa-solid fa-file-medical"></i> Medical Records
+                </a>
+                <a href="#" class="nav-item" data-tab="history">
+                    <i class="fa-solid fa-people-arrows"></i> Family History
+                </a>
+                <a href="#" class="nav-item" data-tab="insights">
+                    <i class="fa-solid fa-lightbulb"></i> AI Insights
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">SJ</div>
+                    <div class="user-info">
+                        <span class="user-name">Sarah Jenkins</span>
+                        <span class="user-role">Primary Parent</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-greeting">
+                    <h1>Good morning, Nithyasree! 👋</h1>
+                    <p>Here's what is happening with your family's health today.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-primary" id="uploadBtn">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Upload Document
+                    </button>
+                    <button class="btn-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge">2</span>
+                    </button>
+                </div>
+            </header>
+
+            <div id="view-dashboard" class="view-section active-view">
+                <div class="dashboard-grid">
+                    <!-- AI Insights Highlight section -->
+                    <section class="insights-section">
+                        <div class="section-header">
+                            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> High Priority AI Insights</h2>
+                        </div>
+                        <div class="insight-cards-container">
+                            <div class="insight-card alert-medium glass-panel">
+                                <div class="insight-icon">
+                                    <i class="fa-solid fa-syringe"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h3>Vaccination Due Soon</h3>
+                                    <p><strong>Leo (Age 2)</strong> is due for the MMR Booster in 14 days.</p>
+                                    <div class="insight-actions">
+                                        <button class="btn-outline-sm">Schedule</button>
+                                        <button class="btn-text-sm">Why this insight?</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="insight-card alert-high glass-panel">
+                                <div class="insight-icon">
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h3>Family Risk Alert</h3>
+                                    <p>Based on Maternal Grandfather's history of Type 2 Diabetes, early metabolic
+                                        screening
+                                        is recommended for <strong>Emma (Age 5)</strong>.</p>
+                                    <div class="insight-actions">
+                                        <button class="btn-outline-sm">Learn More</button>
+                                        <button class="btn-text-sm">Data used</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Children Profiles Summary -->
+                    <section class="children-section">
+                        <div class="section-header">
+                            <h2>Your Children</h2>
+                            <button class="btn-text">View All <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                        <div class="children-cards">
+                            <!-- Child 1 -->
+                            <div class="child-card glass-panel interactive">
+                                <div class="child-header">
+                                    <div class="child-avatar leo-bg">L</div>
+                                    <div class="child-basic-info">
+                                        <h3>Leo Jenkins</h3>
+                                        <span>Male, 2 yrs 4 mos</span>
+                                    </div>
+                                </div>
+                                <div class="child-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Height</span>
+                                        <span class="stat-value">88 cm</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Weight</span>
+                                        <span class="stat-value">12.5 kg</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">BMI</span>
+                                        <span class="stat-value highlight-good">Healthy</span>
+                                    </div>
+                                </div>
+                                <div class="child-footer">
+                                    <span class="last-updated">Last update: 2 weeks ago</span>
+                                </div>
+                            </div>
+
+                            <!-- Child 2 -->
+                            <div class="child-card glass-panel interactive">
+                                <div class="child-header">
+                                    <div class="child-avatar emma-bg">E</div>
+                                    <div class="child-basic-info">
+                                        <h3>Emma Jenkins</h3>
+                                        <span>Female, 5 yrs 1 mo</span>
+                                    </div>
+                                </div>
+                                <div class="child-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Height</span>
+                                        <span class="stat-value">110 cm</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Weight</span>
+                                        <span class="stat-value">18.2 kg</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">BMI</span>
+                                        <span class="stat-value highlight-good">Healthy</span>
+                                    </div>
+                                </div>
+                                <div class="child-footer">
+                                    <span class="last-updated">Last update: 1 month ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div> <!-- End Dashboard View -->
+
+                <!-- Children View -->
+                <div id="view-children" class="view-section">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-child-reaching"></i> Manage Children Profiles</h2>
+                        <button class="btn-primary"><i class="fa-solid fa-plus"></i> Add Child</button>
+                    </div>
+
+                    <div class="children-profile-grid">
+                        <!-- Leo Profile -->
+                        <div class="child-profile-card glass-panel">
+                            <div class="profile-header">
+                                <div class="child-avatar leo-bg">L</div>
+                                <div class="profile-info">
+                                    <h3>Leo Jenkins</h3>
+                                    <p>Male, 2 yrs 4 mos</p>
+                                </div>
+                                <button class="btn-icon" title="Edit Profile"><i class="fa-solid fa-pen"></i></button>
+                            </div>
+
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <span class="detail-label"><i class="fa-solid fa-droplet"></i> Blood Group:</span>
+                                    <span class="detail-value">A+</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label"><i class="fa-solid fa-triangle-exclamation"></i>
+                                        Allergies:</span>
+                                    <span class="detail-value alert-text">Peanuts</span>
+                                </div>
+                            </div>
+
+                            <div class="profile-sections">
+                                <!-- Growth Chart Concept -->
+                                <div class="profile-section">
+                                    <h4><i class="fa-solid fa-chart-line"></i> Growth Chart</h4>
+                                    <div class="chart-placeholder">
+                                        <div class="stat-mini">Height: 88 cm <span class="trend up"><i
+                                                    class="fa-solid fa-arrow-up"></i> 2cm</span></div>
+                                        <div class="stat-mini">Weight: 12.5 kg <span class="trend up"><i
+                                                    class="fa-solid fa-arrow-up"></i> 0.5kg</span></div>
+                                        <div class="chart-bar">
+                                            <div class="chart-progress" style="width: 75%;"></div>
+                                        </div>
+                                        <p class="chart-note">75th percentile for age</p>
+                                    </div>
+                                </div>
+
+                                <!-- Vaccination Status -->
+                                <div class="profile-section">
+                                    <h4><i class="fa-solid fa-syringe"></i> Vaccination Status</h4>
+                                    <ul class="vax-list">
+                                        <li class="vax-item completed">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>DTP Booster (Completed)</span>
+                                        </li>
+                                        <li class="vax-item upcoming">
+                                            <i class="fa-solid fa-clock"></i>
+                                            <span>MMR Booster (Due in 14 days)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emma Profile -->
+                        <div class="child-profile-card glass-panel">
+                            <div class="profile-header">
+                                <div class="child-avatar emma-bg">E</div>
+                                <div class="profile-info">
+                                    <h3>Emma Jenkins</h3>
+                                    <p>Female, 5 yrs 1 mo</p>
+                                </div>
+                                <button class="btn-icon" title="Edit Profile"><i class="fa-solid fa-pen"></i></button>
+                            </div>
+
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <span class="detail-label"><i class="fa-solid fa-droplet"></i> Blood Group:</span>
+                                    <span class="detail-value">O-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label"><i class="fa-solid fa-triangle-exclamation"></i>
+                                        Allergies:</span>
+                                    <span class="detail-value safe-text">None</span>
+                                </div>
+                            </div>
+
+                            <div class="profile-sections">
+                                <!-- Growth Chart Concept -->
+                                <div class="profile-section">
+                                    <h4><i class="fa-solid fa-chart-line"></i> Growth Chart</h4>
+                                    <div class="chart-placeholder">
+                                        <div class="stat-mini">Height: 110 cm <span class="trend up"><i
+                                                    class="fa-solid fa-arrow-up"></i> 1cm</span></div>
+                                        <div class="stat-mini">Weight: 18.2 kg <span class="trend up"><i
+                                                    class="fa-solid fa-arrow-up"></i> 0.3kg</span></div>
+                                        <div class="chart-bar">
+                                            <div class="chart-progress" style="width: 60%;"></div>
+                                        </div>
+                                        <p class="chart-note">60th percentile for age</p>
+                                    </div>
+                                </div>
+
+                                <!-- Vaccination Status -->
+                                <div class="profile-section">
+                                    <h4><i class="fa-solid fa-syringe"></i> Vaccination Status</h4>
+                                    <ul class="vax-list">
+                                        <li class="vax-item completed">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Polio Booster (Completed)</span>
+                                        </li>
+                                        <li class="vax-item completed">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Flu Shot (Completed)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Medical Records View Placeholder -->
+                <div id="view-records" class="view-section">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-file-medical"></i> Medical Records Vault</h2>
+                    </div>
+                    <div class="glass-panel" style="padding: 40px; text-align: center; color: var(--text-muted);">
+                        <i class="fa-solid fa-folder-open"
+                            style="font-size: 48px; margin-bottom: 16px; color: var(--primary-color);"></i>
+                        <h3>Document Vault</h3>
+                        <p>This page will show a searchable grid of PDFs, Blood Reports, Prescriptions, and Scans.</p>
+                    </div>
+                </div>
+
+                <!-- Family History View Placeholder -->
+                <div id="view-history" class="view-section">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-people-arrows"></i> Family History Tree</h2>
+                    </div>
+                    <div class="glass-panel" style="padding: 40px; text-align: center; color: var(--text-muted);">
+                        <i class="fa-solid fa-tree"
+                            style="font-size: 48px; margin-bottom: 16px; color: var(--primary-color);"></i>
+                        <h3>Genetic & Family History</h3>
+                        <p>This page will allow managing Maternal, Paternal, and Sibling medical conditions for risk
+                            scoring.</p>
+                    </div>
+                </div>
+
+                <!-- AI Insights View Placeholder -->
+                <div id="view-insights" class="view-section">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-lightbulb"></i> All AI Insights</h2>
+                    </div>
+                    <div class="glass-panel" style="padding: 40px; text-align: center; color: var(--text-muted);">
+                        <i class="fa-solid fa-robot"
+                            style="font-size: 48px; margin-bottom: 16px; color: var(--primary-color);"></i>
+                        <h3>Full Insights Engine</h3>
+                        <p>This page will show an expanded, filterable list of all predictive health and growth
+                            insights.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Upload Modal Overlay (Hidden by default) -->
+                <div class="modal-overlay hidden" id="uploadModal">
+                    <div class="modal-content glass-panel">
+                        <div class="modal-header">
+                            <h2>Upload Medical Record</h2>
+                            <button class="btn-close" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="upload-dropzone" id="dropzone">
+                                <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                                <h3>Drag & Drop files here</h3>
+                                <p>or click to browse PDFs, JPGs, or PNGs</p>
+                                <input type="file" id="fileInput" hidden multiple>
+                                <button class="btn-secondary"
+                                    onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                            </div>
+                            <p class="upload-note">Documents are securely encrypted. Our AI will automatically
+                                categorize and extract key vitals.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
