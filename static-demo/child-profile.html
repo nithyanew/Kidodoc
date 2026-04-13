@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo's Profile - KidoDoc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Standalone overrides / Specific styles for this page */
+        .child-profile-layout {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 8px;
+            transition: var(--transition);
+        }
+
+        .back-nav:hover {
+            color: #4F46E5;
+        }
+
+        /* Top: Info Card */
+        .info-card {
+            display: flex;
+            align-items: center;
+            padding: 32px;
+            gap: 32px;
+        }
+
+        .info-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #3b82f6, #4F46E5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
+        }
+
+        .info-core {
+            flex-grow: 1;
+        }
+
+        .info-core h1 {
+            font-size: 32px;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .info-core p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .info-tags {
+            display: flex;
+            gap: 24px;
+        }
+
+        .info-tag {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--radius-md);
+        }
+
+        .tag-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .tag-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tag-value.danger { color: #ef4444; }
+
+        /* Middle: Growth Charts */
+        .charts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .chart-box {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chart-stat {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4F46E5;
+        }
+
+        .chart-stat span {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Fake CSS Chart */
+        .css-chart {
+            height: 140px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 8px;
+            padding-top: 20px;
+            border-bottom: 2px solid var(--secondary-hover);
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+        }
+
+        .bar {
+            width: 100%;
+            background: #4F46E5;
+            border-radius: 4px 4px 0 0;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .bar:hover { opacity: 1; }
+
+        .bar-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .weight-chart .bar {
+            background: #34C759;
+        }
+
+        /* Bottom: Vaccination Table */
+        .table-card {
+            padding: 24px;
+        }
+
+        .table-card h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vax-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .vax-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--secondary-hover);
+        }
+
+        .vax-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--secondary-hover);
+            vertical-align: middle;
+        }
+
+        .vax-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .vax-name {
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+        }
+
+        .vax-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34C759;
+        }
+
+        .status-upcoming {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+        }
+
+        @media (max-width: 768px) {
+            .info-card { flex-direction: column; text-align: center; }
+            .info-tags { flex-wrap: wrap; justify-content: center; }
+            .charts-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div style="min-height: 100vh; background-color: var(--bg-color);">
+        <div class="child-profile-layout">
+            <a href="index.html" class="back-nav"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+            <!-- Top: Info Card -->
+            <div class="glass-panel info-card">
+                <div class="info-avatar">L</div>
+                <div class="info-core">
+                    <h1>Leo Jenkins</h1>
+                    <p>Male, 2 years 4 months</p>
+                    <div class="info-tags">
+                        <div class="info-tag">
+                            <span class="tag-label">Blood Group</span>
+                            <span class="tag-value"><i class="fa-solid fa-droplet" style="color: #ef4444; font-size: 14px; margin-right: 4px;"></i> A+</span>
+                        </div>
+                        <div class="info-tag">
+                            <span class="tag-label">Allergies</span>
+                            <span class="tag-value danger"><i class="fa-solid fa-triangle-exclamation" style="font-size: 14px; margin-right: 4px;"></i> Peanuts</span>
+                        </div>
+                        <div class="info-tag">
+                            <span class="tag-label">Pediatrician</span>
+                            <span class="tag-value">Dr. Smith</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-secondary"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+            </div>
+
+            <!-- Middle: Growth Charts -->
+            <div class="charts-container">
+                <!-- Height Chart -->
+                <div class="glass-panel chart-box">
+                    <div class="chart-header">
+                        <h3><i class="fa-solid fa-ruler-vertical" style="color: #4F46E5;"></i> Height</h3>
+                        <div class="chart-stat">88 <span>cm</span></div>
+                    </div>
+                    <div class="css-chart height-chart">
+                        <div class="bar-col"><div class="bar" style="height: 40%"></div><span class="bar-label">6mo</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 55%"></div><span class="bar-label">1yr</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 70%"></div><span class="bar-label">1.5yr</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 85%"></div><span class="bar-label">2yr</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 95%; background: linear-gradient(0deg, #4F46E5, #a855f7);"></div><span class="bar-label" style="font-weight: bold; color: #4F46E5;">Now</span></div>
+                    </div>
+                    <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 8px;">75th percentile (On track)</p>
+                </div>
+
+                <!-- Weight Chart -->
+                <div class="glass-panel chart-box">
+                    <div class="chart-header">
+                        <h3><i class="fa-solid fa-weight-scale" style="color: #34C759;"></i> Weight</h3>
+                        <div class="chart-stat">12.5 <span>kg</span></div>
+                    </div>
+                    <div class="css-chart weight-chart">
+                        <div class="bar-col"><div class="bar" style="height: 30%"></div><span class="bar-label">6mo</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 50%"></div><span class="bar-label">1yr</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 65%"></div><span class="bar-label">1.5yr</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 80%"></div><span class="bar-label">2yr</span></div>
+                        <div class="bar-col"><div class="bar" style="height: 90%; background: linear-gradient(0deg, #34C759, #10b981);"></div><span class="bar-label" style="font-weight: bold; color: #34C759;">Now</span></div>
+                    </div>
+                    <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 8px;">60th percentile (Healthy)</p>
+                </div>
+            </div>
+
+            <!-- Bottom: Vaccination Status Table -->
+            <div class="glass-panel table-card">
+                <h3><i class="fa-solid fa-syringe" style="color: #4F46E5;"></i> Vaccination Record</h3>
+                <div style="overflow-x: auto;">
+                    <table class="vax-table">
+                        <thead>
+                            <tr>
+                                <th>Vaccine</th>
+                                <th>Target Age</th>
+                                <th>Date Administered</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="vax-name">MMR Booster</span>
+                                    <span class="vax-desc">Measles, Mumps, Rubella</span>
+                                </td>
+                                <td>2 yrs 6 mos</td>
+                                <td>-</td>
+                                <td><span class="status-badge status-upcoming"><i class="fa-solid fa-clock"></i> Due in 14 days</span></td>
+                                <td><button class="btn-primary" style="padding: 6px 12px; font-size: 13px; background: #4F46E5;">Schedule</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="vax-name">DTP Booster</span>
+                                    <span class="vax-desc">Diphtheria, Tetanus, Pertussis</span>
+                                </td>
+                                <td>2 yrs</td>
+                                <td>Dec 10, 2025</td>
+                                <td><span class="status-badge status-completed"><i class="fa-solid fa-check"></i> Completed</span></td>
+                                <td><button class="btn-text-sm" style="color: var(--text-muted);">View Record</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="vax-name">Polio (IPV)</span>
+                                    <span class="vax-desc">Inactivated Poliovirus</span>
+                                </td>
+                                <td>1 yr 6 mos</td>
+                                <td>May 15, 2025</td>
+                                <td><span class="status-badge status-completed"><i class="fa-solid fa-check"></i> Completed</span></td>
+                                <td><button class="btn-text-sm" style="color: var(--text-muted);">View Record</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
