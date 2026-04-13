@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up for KidoDoc</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Auth CSS -->
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <!-- Animated background blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <a href="landing.html" class="auth-logo">
+                <i class="fa-solid fa-notes-medical"></i> KidoDoc
+            </a>
+            
+            <div class="auth-header">
+                <h1>Create an account</h1>
+                <p>Start securing your family's health data</p>
+            </div>
+
+            <form class="auth-form" action="index.html">
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" placeholder="Sarah Jenkins" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a strong password" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-group" style="align-items: flex-start;">
+                        <input type="checkbox" required style="margin-top: 4px;"> 
+                        <span style="font-weight: normal; font-size: 13px; color: var(--text-muted);">
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">Create account</button>
+            </form>
+
+            <div class="auth-divider">OR</div>
+
+            <button class="btn-social" type="button">
+                <i class="fa-brands fa-google" style="color: #DB4437;"></i> Sign up with Google
+            </button>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Log in</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
